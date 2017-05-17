@@ -12,6 +12,11 @@ spring:
     platform: h2                        # 指定数据源类型
     schema: classpath:schema.sql        # 指定h2数据库的建表脚本
     data: classpath:data.sql            # 指定h2数据库的insert脚本
+  #cloud注册中心
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
 logging:
   level:
     root: INFO
@@ -19,9 +24,9 @@ logging:
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
     org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
     com.itmuch.youran.persistence: ERROR
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://discovery:8761/eureka/    # 指定注册中心的地址
-  instance:
-    preferIpAddress: true
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://discovery:8761/eureka/    # 指定注册中心的地址
+#  instance:
+#    preferIpAddress: true
