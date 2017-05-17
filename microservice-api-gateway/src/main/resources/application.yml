@@ -1,14 +1,19 @@
 spring:
   application:
     name: microservice-api-gateway
+  #cloud注册中心
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
 server:
   port: 8050
-eureka:
-  instance:
-    hostname: gateway
-  client:
-    serviceUrl:
-      defaultZone: http://discovery:8761/eureka/
+#eureka:
+#  instance:
+#    hostname: gateway
+#  client:
+#    serviceUrl:
+#      defaultZone: http://discovery:8761/eureka/
 zuul:
   ignored-services: microservice-provider-user                        # 需要忽视的服务(配置后将不会被路由)
   routes:
