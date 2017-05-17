@@ -23,6 +23,7 @@
     <module>microservice-config-server-eureka</module>
     <module>microservice-config-client-eureka</module>
     <module>microservice-api-gateway</module>
+      <module>turbine-hystrix-dashboard-rabbitmq</module>
   </modules>
 
   <!-- 使用最新的spring-boot版本 -->

@@ -1,0 +1,52 @@
+server:
+  port: 4444
+
+spring:
+  application:
+    name: hystrix.dashboard
+
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        register: false
+
+#    stream:
+#      kafka:
+#        binder:
+#          brokers: localhost:9092
+#          zkNodes: localhost:2181
+#          offsetUpdateTimeWindow: 10000
+#          #offsetUpdateCount: 0
+#          requiredAcks: 1
+#          minPartitionCount: 1
+#          replicationFactor: 1
+#
+#        bindings:
+#          output:
+#            producer:
+#              bufferSize: 16384
+#              sync: true
+#              batchTimeout: 0
+
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+    virtualHost: /
+
+
+turbine:
+  stream:
+    port: 8989
+  aggregator:
+    clusterConfig: default   # 指定聚合哪些集群，多个使用","分割，默认为default。可使用http://.../turbine.stream?cluster={clusterConfig之一}访问
+  appConfig: microservice-consumer-movie-feign-with-hystrix-stream,microservice-consumer-movie-ribbon-with-hystrix  ### 配置Eureka中的serviceId列表，表明监控哪些服务
+  clusterNameExpression: new String("default")
+
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8081/eureka/
