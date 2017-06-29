@@ -6,8 +6,8 @@ spring:
   #cloud注册中心
   cloud:
     consul:
-      host: localhost
-      port: 8500
+      host: consul.uats.cc
+      port: 80
 #eureka:
 #  client:
 #    serviceUrl:

@@ -3,10 +3,15 @@ server:
 spring:
   application:
     name: microservice-consumer-movie-feign
+  #cloud注册中心
+  cloud:
+    consul:
+      host: consul.uats.cc
+      port: 80
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://discovery:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/
   instance:
     preferIpAddress: true
 ribbon:
