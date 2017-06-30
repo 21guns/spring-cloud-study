@@ -1,0 +1,65 @@
+version: '3'
+
+services:
+  eureka:
+    build:
+      context: ./microservice-discovery-eureka
+    image: hulk/eureka
+    container_name: eureka
+    ports:
+      - "8761:8761"
+#    links:
+#      - "redis:redis"
+#      - "mysql:mysql"
+#    depends_on:
+#      - redis
+#      - mysql
+    networks:
+      - hulk
+#    volumes:
+#      - /Users/jliu/develop/upload:/var/ijusai/data/upload
+#    environment:
+#      SPRING_PROFILES_ACTIVE: docker
+#
+##docker run -p 8080:8080 -t  -e spring.profiles.active=docker --link redis:redis --link mysql:mysql --net ijusai senjing/ijusai.web
+#
+#  user-service:
+#    build:
+#      context: ./microservice-provider-user
+#    image: hulk/user-service
+#    container_name: user-service-1
+#    ports:
+#      - "8000:8000"
+#    links:
+#      - "eureka:eureka"
+##      - "mysql:mysql"
+#    depends_on:
+#      - eureka
+##      - mysql
+##    volumes:
+##      - /Users/jliu/develop/upload:/var/ijusai/data/upload
+#    networks:
+#      - hulk
+#    environment:
+#      SPRING_PROFILES_ACTIVE: docker
+
+  movice-service:
+    build:
+      context: ./microservice-consumer-movie-feign
+    image: hulk/movice-service
+    container_name: movice-service-1
+    ports:
+      - "8020:8020"
+    links:
+      - "eureka:eureka"
+    depends_on:
+      - eureka
+    networks:
+      - hulk
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+
+
+networks:
+  hulk:
+    driver: bridge

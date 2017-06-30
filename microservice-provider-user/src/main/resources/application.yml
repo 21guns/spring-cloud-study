@@ -40,3 +40,15 @@ eureka:
       defaultZone: http://localhost:8761/eureka/    # 指定注册中心的地址
   instance:
     preferIpAddress: true
+
+---
+spring:
+  profiles: docker
+
+  zipkin:
+    base-url: http://zipkin:9411
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka:8761/eureka/    # 指定注册中心的地址
