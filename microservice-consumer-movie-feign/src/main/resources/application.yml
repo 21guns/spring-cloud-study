@@ -6,8 +6,8 @@ spring:
   #cloud注册中心
   cloud:
     consul:
-      host: consul.uats.cc
-      port: 80
+      host: localhost
+      port: 8500
 eureka:
   client:
     serviceUrl:
@@ -27,6 +27,12 @@ spring:
 
   zipkin:
     base-url: http://zipkin:9411
+
+  #cloud注册中心
+  cloud:
+    consul:
+      host: consul
+      port: 8500
 
 eureka:
   client:

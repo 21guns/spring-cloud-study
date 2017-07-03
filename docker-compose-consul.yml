@@ -1,0 +1,68 @@
+version: '3'
+
+services:
+  consul:
+    image: progrium/consul
+    container_name: consul
+    ports:
+      - "8400:8400"
+      - "8500:8500"
+      - "8600:53/udp"
+    command: -server -bootstrap -ui-dir /ui
+    networks:
+      - hulk
+
+  user-service:
+    build:
+      context: ./microservice-provider-user
+    image: hulk/user-service
+    container_name: user-service-1
+    ports:
+      - "8081:8081"
+    links:
+      - "consul:consul"
+    depends_on:
+      - consul
+    networks:
+      - hulk
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SERVER_PORT: 8081
+      SPRING_CLOUD_CONSUL_DISCOVERY_PREFER_IP_ADDRESS: "true" #consul为注册中心是，使用docker需要指定docker宿主机的ip
+      SPRING_CLOUD_CONSUL_DISCOVERY_IP_ADDRESS: 192.168.2.177 #consul为注册中心是，使用docker需要指定docker宿主机的ip
+
+  user-service-a:
+    image: hulk/user-service
+    ports:
+      - "8082:8082"
+    links:
+      - "consul:consul"
+    depends_on:
+      - consul
+    networks:
+      - hulk
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SERVER_PORT: 8082
+      SPRING_CLOUD_CONSUL_DISCOVERY_PREFER_IP_ADDRESS: "true" #consul为注册中心是，使用docker需要指定docker宿主机的ip
+      SPRING_CLOUD_CONSUL_DISCOVERY_IP_ADDRESS: 192.168.2.177 #consul为注册中心是，使用docker需要指定docker宿主机的ip
+#  movice-service:
+#    build:
+#      context: ./microservice-consumer-movie-feign
+#    image: hulk/movice-service
+#    container_name: movice-service-1
+#    ports:
+#      - "8020:8020"
+#    links:
+#      - "eureka:eureka"
+#    depends_on:
+#      - eureka
+#    networks:
+#      - hulk
+#    environment:
+#      SPRING_PROFILES_ACTIVE: docker
+
+
+networks:
+  hulk:
+    driver: bridge

@@ -13,10 +13,10 @@ spring:
     schema: classpath:schema.sql        # 指定h2数据库的建表脚本
     data: classpath:data.sql            # 指定h2数据库的insert脚本
   #cloud注册中心
-#  cloud:
-#    consul:
-#      host: consul.uats.cc
-#      port: 80
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
 
   #分布式追踪
   sleuth:
@@ -47,6 +47,12 @@ spring:
 
   zipkin:
     base-url: http://zipkin:9411
+
+  #cloud注册中心
+  cloud:
+    consul:
+      host: consul
+      port: 8500
 
 eureka:
   client:

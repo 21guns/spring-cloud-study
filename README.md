@@ -79,3 +79,7 @@ hystrix.dashboard
    * docker run -d -p 9411:9411 openzipkin/zipkin
 - sletuh+streaming+zipkin
 
+## docker 
+### docker  compose
+- mvn clean package && docker-compose  build && docker-compose  up
+- mvn clean package && docker-compose -f docker-compose-consul.yml build && docker-compose -f docker-compose-consul.yml up
