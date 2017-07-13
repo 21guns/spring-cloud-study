@@ -24,7 +24,7 @@
     <module>microservice-config-client-eureka</module>
     <module>microservice-api-gateway</module>
       <module>turbine-hystrix-dashboard-rabbitmq</module>
-      <module>cloud-extend</module>
+      <module>cloud</module>
   </modules>
 
   <!-- 使用最新的spring-boot版本 -->
@@ -69,12 +69,5 @@
       <artifactId>spring-boot-starter-undertow</artifactId>
     </dependency>
   </dependencies>
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin>
-    </plugins>
-  </build>
+
 </project>

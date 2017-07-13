@@ -18,13 +18,18 @@
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-zuul</artifactId>
     </dependency>
-    <!--<dependency>-->
-      <!--<groupId>org.springframework.cloud</groupId>-->
-      <!--<artifactId>spring-cloud-starter-consul-discovery</artifactId>-->
-    <!--</dependency>-->
     <dependency>
       <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-eureka</artifactId>
+      <artifactId>spring-cloud-starter-consul-discovery</artifactId>
+    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.springframework.cloud</groupId>-->
+      <!--<artifactId>spring-cloud-starter-eureka</artifactId>-->
+    <!--</dependency>-->
+    <dependency>
+      <groupId>com.itmuch.cloud</groupId>
+      <artifactId>cloud-limiting</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
     </dependency>
   </dependencies>
 </project>

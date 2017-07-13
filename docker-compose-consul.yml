@@ -2,13 +2,13 @@ version: '3'
 
 services:
   consul:
-    image: progrium/consul
+    image: consul
     container_name: consul
     ports:
       - "8400:8400"
       - "8500:8500"
-      - "8600:53/udp"
-    command: -server -bootstrap -ui-dir /ui
+#      - "8600:53/udp"
+#    command: -server -bootstrap -ui-dir /ui
     networks:
       - hulk
 
@@ -33,6 +33,7 @@ services:
 
   user-service-a:
     image: hulk/user-service
+    container_name: user-service-a-1
     ports:
       - "8082:8082"
     links:

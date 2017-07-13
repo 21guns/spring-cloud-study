@@ -17,7 +17,8 @@ spring:
     consul:
       host: localhost
       port: 8500
-
+#      discovery:
+#        tags: foo=bar, baz, weight=2
   #分布式追踪
   sleuth:
     sampler:
