@@ -12,6 +12,20 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
+  <dependencyManagement>
+    <dependencies>
+      <!-- contract If you're adding this dependency explicitly you have to
+      add it *BEFORE* the Release Train BOM-->
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-contract-dependencies</artifactId>
+        <version>1.1.1.RELEASE</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <dependencies>
     <!-- 添加Eureka的依赖 -->
     <!--<dependency>-->
@@ -43,14 +57,24 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
+
+  <!-- contract -->
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-contract-verifier</artifactId>
+      <scope>test</scope>
+    </dependency>
+
   </dependencies>
 
   <build>
     <plugins>
+      <!-- spring boot -->
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
+      <!-- docker file-->
       <plugin>
         <groupId>com.spotify</groupId>
         <artifactId>dockerfile-maven-plugin</artifactId>
@@ -69,6 +93,26 @@
           <tag>${project.version}</tag>
         </configuration>
       </plugin>
+
+      <!-- contract -->
+      <plugin>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-contract-maven-plugin</artifactId>
+        <version>1.1.1.RELEASE</version>
+        <extensions>true</extensions>
+        <configuration>
+          <!--<baseClassForTecom.itmuch.cloud.study.test.UserBaseTest</baseClassForTests>-->
+
+          <basePackageForTests>com.itmuch.cloud.test</basePackageForTests>
+          <baseClassMappings>
+            <baseClassMapping>
+              <contractPackageRegex>.*user.*</contractPackageRegex>
+              <baseClassFQN>com.itmuch.cloud.study.test.UserBase</baseClassFQN>
+            </baseClassMapping>
+          </baseClassMappings>
+        </configuration>
+      </plugin>
+
     </plugins>
   </build>
 </project>
