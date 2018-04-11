@@ -26,7 +26,7 @@ public  abstract class UserBase {
 
   @Before
   public void setup() {
-    when(userRepository.findOne(anyLong())).
+    when(userRepository.getOne(anyLong())).
             thenReturn(new User());
 
     RestAssuredMockMvc.standaloneSetup(producerController);

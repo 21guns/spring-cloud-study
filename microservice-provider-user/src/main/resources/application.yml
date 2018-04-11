@@ -17,6 +17,8 @@ spring:
     consul:
       host: localhost
       port: 8500
+      discovery:
+        health-check-url:
 #      discovery:
 #        tags: foo=bar, baz, weight=2
   #分布式追踪
